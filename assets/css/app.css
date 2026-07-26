@@ -1,0 +1,590 @@
+/* See the Tailwind configuration guide for advanced usage
+   https://tailwindcss.com/docs/configuration */
+
+@import "tailwindcss" source(none);
+@source "../css";
+@source "../js";
+@source "../../lib/merstars_com_sg_web";
+
+/* A Tailwind plugin that makes "hero-#{ICON}" classes available.
+   The heroicons installation itself is managed by your mix.exs */
+@plugin "../vendor/heroicons";
+
+/* daisyUI Tailwind Plugin. You can update this file by fetching the latest version with:
+   curl -sLO https://github.com/saadeghi/daisyui/releases/latest/download/daisyui.js
+   Make sure to look at the daisyUI changelog: https://daisyui.com/docs/changelog/ */
+@plugin "../vendor/daisyui" {
+  themes: false;
+}
+
+/* daisyUI theme plugin. You can update this file by fetching the latest version with:
+  curl -sLO https://github.com/saadeghi/daisyui/releases/latest/download/daisyui-theme.js
+  We ship with two themes, a light one inspired on Phoenix colors and a dark one inspired
+  on Elixir colors. Build your own at: https://daisyui.com/theme-generator/ */
+@plugin "../vendor/daisyui-theme" {
+  name: "dark";
+  default: false;
+  prefersdark: true;
+  color-scheme: "dark";
+  --color-base-100: oklch(30.33% 0.016 252.42);
+  --color-base-200: oklch(25.26% 0.014 253.1);
+  --color-base-300: oklch(20.15% 0.012 254.09);
+  --color-base-content: oklch(97.807% 0.029 256.847);
+  --color-primary: oklch(58% 0.233 277.117);
+  --color-primary-content: oklch(96% 0.018 272.314);
+  --color-secondary: oklch(58% 0.233 277.117);
+  --color-secondary-content: oklch(96% 0.018 272.314);
+  --color-accent: oklch(60% 0.25 292.717);
+  --color-accent-content: oklch(96% 0.016 293.756);
+  --color-neutral: oklch(37% 0.044 257.287);
+  --color-neutral-content: oklch(98% 0.003 247.858);
+  --color-info: oklch(58% 0.158 241.966);
+  --color-info-content: oklch(97% 0.013 236.62);
+  --color-success: oklch(60% 0.118 184.704);
+  --color-success-content: oklch(98% 0.014 180.72);
+  --color-warning: oklch(66% 0.179 58.318);
+  --color-warning-content: oklch(98% 0.022 95.277);
+  --color-error: oklch(58% 0.253 17.585);
+  --color-error-content: oklch(96% 0.015 12.422);
+  --radius-selector: 0.25rem;
+  --radius-field: 0.25rem;
+  --radius-box: 0.5rem;
+  --size-selector: 0.21875rem;
+  --size-field: 0.21875rem;
+  --border: 1.5px;
+  --depth: 1;
+  --noise: 0;
+}
+
+@plugin "../vendor/daisyui-theme" {
+  name: "light";
+  default: true;
+  prefersdark: false;
+  color-scheme: "light";
+  --color-base-100: oklch(98% 0 0);
+  --color-base-200: oklch(96% 0.001 286.375);
+  --color-base-300: oklch(92% 0.004 286.32);
+  --color-base-content: oklch(21% 0.006 285.885);
+  --color-primary: oklch(70% 0.213 47.604);
+  --color-primary-content: oklch(98% 0.016 73.684);
+  --color-secondary: oklch(55% 0.027 264.364);
+  --color-secondary-content: oklch(98% 0.002 247.839);
+  --color-accent: oklch(0% 0 0);
+  --color-accent-content: oklch(100% 0 0);
+  --color-neutral: oklch(44% 0.017 285.786);
+  --color-neutral-content: oklch(98% 0 0);
+  --color-info: oklch(62% 0.214 259.815);
+  --color-info-content: oklch(97% 0.014 254.604);
+  --color-success: oklch(70% 0.14 182.503);
+  --color-success-content: oklch(98% 0.014 180.72);
+  --color-warning: oklch(66% 0.179 58.318);
+  --color-warning-content: oklch(98% 0.022 95.277);
+  --color-error: oklch(58% 0.253 17.585);
+  --color-error-content: oklch(96% 0.015 12.422);
+  --radius-selector: 0.25rem;
+  --radius-field: 0.25rem;
+  --radius-box: 0.5rem;
+  --size-selector: 0.21875rem;
+  --size-field: 0.21875rem;
+  --border: 1.5px;
+  --depth: 1;
+  --noise: 0;
+}
+
+/* Add variants based on LiveView classes */
+@custom-variant phx-click-loading (.phx-click-loading&, .phx-click-loading &);
+@custom-variant phx-submit-loading (.phx-submit-loading&, .phx-submit-loading &);
+@custom-variant phx-change-loading (.phx-change-loading&, .phx-change-loading &);
+
+/* Use the data attribute for dark mode  */
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+/* Make LiveView wrapper divs transparent for layout */
+[data-phx-session], [data-phx-teleported-src] { display: contents }
+
+/* This file is for your main application CSS */
+
+/* ==========================================================================
+   Merstar International — visual refresh (DESIGN.md v2)
+   Light-by-default. Pine is punctuation (top bar, footer, one CTA band),
+   never a backdrop. Signal green is the only accent.
+   ========================================================================== */
+
+@font-face {
+  font-family: "Fraunces";
+  src: local("Fraunces");
+  font-weight: 300 700;
+}
+
+:root {
+  --m-pine: #0b2a1e;
+  --m-pine-deep: #081f16;
+  --m-bone: #f5f3ed;
+  --m-ink: #17251e;
+  --m-sage-text: #4e5c54;
+  --m-sage-decor: #8a9691;
+  --m-signal: #2fa35e;
+  --m-signal-text: #0e6e35;
+  --m-signal-on-dark: #3dbe70;
+  --m-line: #d8d4c8;
+
+  --m-font-display: "Fraunces", ui-serif, Georgia, serif;
+  --m-font-body: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  --m-font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+.merstar {
+  background: var(--m-bone);
+  color: var(--m-ink);
+  font-family: var(--m-font-body);
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+.merstar h1,
+.merstar h2,
+.merstar h3 {
+  font-family: var(--m-font-display);
+  font-weight: 500;
+  line-height: 1.1;
+  text-wrap: balance;
+  letter-spacing: -0.005em;
+  color: var(--m-ink);
+  margin: 0;
+}
+
+.merstar h1 { font-size: clamp(2rem, 4vw, 3.2rem); }
+.merstar h2 { font-size: clamp(1.5rem, 2.6vw, 2.1rem); }
+.merstar h3 { font-size: 1.25rem; }
+
+.merstar .m-eyebrow {
+  font-family: var(--m-font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--m-signal-text);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.9rem;
+}
+.merstar .m-eyebrow::before {
+  content: "";
+  width: 22px;
+  height: 1px;
+  background: var(--m-signal-text);
+}
+
+.merstar .m-container {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.merstar .m-section { padding: 4.5rem 0; }
+.merstar .m-section-tight { padding: 3rem 0; }
+
+/* ---------- top utility bar ---------- */
+.merstar .m-topbar {
+  background: var(--m-pine);
+  color: rgba(245, 243, 237, 0.75);
+  font-family: var(--m-font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.03em;
+}
+.merstar .m-topbar-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 2rem;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+.merstar .m-topbar a { color: inherit; text-decoration: none; }
+.merstar .m-topbar .m-signal-dot { color: var(--m-signal-on-dark); }
+
+/* ---------- main nav (on white, per DESIGN.md) ---------- */
+.merstar .m-nav {
+  background: #ffffff;
+  border-bottom: 1px solid var(--m-line);
+}
+.merstar .m-nav-inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+.merstar .m-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+}
+.merstar .m-brand-mark {
+  width: 36px;
+  height: 36px;
+  border: 1.5px solid var(--m-signal-text);
+  border-radius: 3px;
+  display: grid;
+  place-items: center;
+  font-family: var(--m-font-display);
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--m-signal-text);
+  flex-shrink: 0;
+}
+.merstar .m-brand-word {
+  font-family: var(--m-font-display);
+  font-weight: 500;
+  font-size: 1.1rem;
+  color: var(--m-ink);
+}
+.merstar .m-brand-word small {
+  display: block;
+  font-family: var(--m-font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.12em;
+  color: var(--m-sage-text);
+  font-weight: 400;
+}
+.merstar .m-navlinks {
+  display: flex;
+  gap: 1.6rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  flex-wrap: wrap;
+}
+.merstar .m-navlinks a {
+  color: var(--m-ink);
+  text-decoration: none;
+  padding-bottom: 0.3rem;
+  border-bottom: 2px solid transparent;
+}
+.merstar .m-navlinks a:hover,
+.merstar .m-navlinks a.current {
+  border-bottom-color: var(--m-signal);
+}
+
+/* ---------- buttons ---------- */
+.merstar .m-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--m-font-body);
+  font-weight: 600;
+  font-size: 0.85rem;
+  padding: 0.7rem 1.35rem;
+  border-radius: 8px;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  white-space: nowrap;
+}
+.merstar .m-btn-primary {
+  background: var(--m-signal);
+  color: var(--m-ink);
+}
+.merstar .m-btn-primary:hover { background: var(--m-signal-on-dark); }
+.merstar .m-btn-ghost {
+  background: transparent;
+  color: var(--m-ink);
+  border: 1px solid var(--m-line);
+}
+.merstar .m-btn-ghost:hover { border-color: var(--m-sage-text); }
+
+.merstar a.m-link {
+  color: var(--m-signal-text);
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1.5px solid var(--m-signal-text);
+  padding-bottom: 0.1rem;
+}
+.merstar a.m-link:hover { color: var(--m-signal-on-dark); border-color: var(--m-signal-on-dark); }
+
+/* focus ring, per accessibility checklist */
+.merstar a:focus-visible,
+.merstar button:focus-visible,
+.merstar input:focus-visible,
+.merstar textarea:focus-visible {
+  outline: 2px solid var(--m-signal);
+  outline-offset: 2px;
+}
+
+/* ---------- hero ---------- */
+.merstar .m-hero {
+  background: var(--m-bone);
+  padding: 3.5rem 0 4.5rem;
+}
+.merstar .m-hero-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 3rem;
+  align-items: center;
+}
+.merstar .m-hero p.m-lede {
+  font-size: 1.05rem;
+  color: var(--m-sage-text);
+  max-width: 46ch;
+  margin: 1.2rem 0 1.8rem;
+}
+.merstar .m-hero-ctas { display: flex; gap: 0.9rem; margin-bottom: 2.2rem; flex-wrap: wrap; }
+.merstar .m-value-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 0.92rem;
+  color: var(--m-ink);
+}
+.merstar .m-value-list li { display: flex; align-items: center; gap: 0.55rem; }
+.merstar .m-value-list li::before {
+  content: "";
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--m-signal);
+  flex-shrink: 0;
+}
+
+/* live lane status manifest card */
+.merstar .m-manifest {
+  background: #ffffff;
+  border: 1px solid var(--m-line);
+  border-radius: 8px;
+  padding: 1.5rem;
+  font-family: var(--m-font-mono);
+  font-size: 0.78rem;
+}
+.merstar .m-manifest-head {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px dashed var(--m-line);
+  padding-bottom: 0.9rem;
+  margin-bottom: 0.9rem;
+  letter-spacing: 0.06em;
+  font-size: 0.65rem;
+  color: var(--m-sage-text);
+  text-transform: uppercase;
+}
+.merstar .m-manifest-row {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 1rem;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid var(--m-line);
+  align-items: center;
+}
+.merstar .m-manifest-row:last-child { border-bottom: none; }
+.merstar .m-manifest-row .m-route .m-sep { color: var(--m-signal-text); margin: 0 0.4rem; }
+.merstar .m-status-pill {
+  font-size: 0.62rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.22rem 0.55rem;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+.merstar .m-status-pill.m-transit {
+  background: var(--m-signal);
+  color: var(--m-ink);
+}
+.merstar .m-status-pill.m-cleared {
+  border: 1px solid var(--m-sage-decor);
+  color: var(--m-sage-text);
+  background: transparent;
+}
+.merstar .m-manifest-row .m-eta { color: var(--m-sage-text); text-align: right; }
+
+/* ---------- generic section head ---------- */
+.merstar .m-section-head { margin-bottom: 2.5rem; }
+.merstar .m-section-head p {
+  color: var(--m-sage-text);
+  font-size: 1rem;
+  max-width: 70ch;
+  margin: 0.9rem 0 0;
+}
+
+/* ---------- network band ---------- */
+.merstar .m-network-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  border-top: 1px solid var(--m-line);
+  border-left: 1px solid var(--m-line);
+}
+.merstar .m-network-cell {
+  border-right: 1px solid var(--m-line);
+  border-bottom: 1px solid var(--m-line);
+  padding: 1.4rem 1.1rem;
+}
+.merstar .m-network-cell .m-region {
+  font-family: var(--m-font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--m-signal-text);
+  margin-bottom: 0.4rem;
+}
+.merstar .m-network-cell .m-place {
+  font-family: var(--m-font-display);
+  font-size: 1.05rem;
+  font-weight: 500;
+}
+
+/* ---------- services manifest list ---------- */
+.merstar .m-services-list { border-top: 1px solid var(--m-line); }
+.merstar .m-service-row {
+  display: grid;
+  grid-template-columns: 70px 1fr 2fr;
+  gap: 2rem;
+  padding: 1.6rem 0;
+  border-bottom: 1px solid var(--m-line);
+  align-items: baseline;
+  text-decoration: none;
+  color: inherit;
+}
+.merstar .m-service-row .m-num {
+  font-family: var(--m-font-display);
+  color: var(--m-sage-decor);
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+.merstar .m-service-row h3 { margin: 0; }
+.merstar .m-service-row p { color: var(--m-sage-text); font-size: 0.94rem; margin: 0.3rem 0 0; }
+.merstar .m-service-row:hover h3 { color: var(--m-signal-text); }
+
+/* ---------- cards (testimonial etc) ---------- */
+.merstar .m-card {
+  background: #ffffff;
+  border: 1px solid var(--m-line);
+  border-radius: 8px;
+  padding: 2.4rem;
+}
+.merstar .m-testimonial blockquote {
+  font-family: var(--m-font-display);
+  font-style: italic;
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 1.5;
+  margin: 0 0 1.3rem;
+  text-wrap: balance;
+}
+.merstar .m-testimonial cite {
+  font-style: normal;
+  font-family: var(--m-font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  color: var(--m-sage-text);
+  text-transform: uppercase;
+}
+
+/* ---------- the ONE dark CTA band ---------- */
+.merstar .m-cta-band {
+  background: var(--m-pine);
+  color: var(--m-bone);
+  border-radius: 8px;
+  padding: 2.8rem 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+.merstar .m-cta-band h2 { color: #ffffff; margin-bottom: 0.4rem; }
+.merstar .m-cta-band p { color: rgba(245, 243, 237, 0.75); margin: 0; max-width: 42ch; }
+
+/* ---------- footer (Pine deep) ---------- */
+.merstar .m-footer {
+  background: var(--m-pine-deep);
+  color: rgba(245, 243, 237, 0.6);
+  padding: 3rem 0 1.5rem;
+  font-size: 0.85rem;
+}
+.merstar .m-footer-cols {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(245, 243, 237, 0.14);
+  margin-bottom: 1.5rem;
+}
+.merstar .m-footer-cols h4 {
+  font-family: var(--m-font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--m-signal-on-dark);
+  margin: 0 0 0.9rem;
+  font-weight: 500;
+}
+.merstar .m-footer-cols a,
+.merstar .m-footer-cols p {
+  display: block;
+  color: rgba(245, 243, 237, 0.6);
+  text-decoration: none;
+  font-size: 0.85rem;
+  margin: 0 0 0.55rem;
+}
+.merstar .m-footer-cols a:hover { color: var(--m-signal-on-dark); }
+.merstar .m-footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--m-font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.03em;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* ---------- simple form (contact page) ---------- */
+.merstar .m-form { display: grid; gap: 1.1rem; }
+.merstar .m-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; }
+.merstar .m-form label {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  color: var(--m-ink);
+}
+.merstar .m-form input,
+.merstar .m-form textarea {
+  width: 100%;
+  border: 1px solid var(--m-line);
+  border-radius: 6px;
+  padding: 0.7rem 0.85rem;
+  font-family: var(--m-font-body);
+  font-size: 0.92rem;
+  background: #ffffff;
+  color: var(--m-ink);
+}
+.merstar .m-contact-rows { display: flex; flex-direction: column; gap: 1.2rem; }
+.merstar .m-contact-rows .m-contact-row { display: flex; align-items: baseline; gap: 0.8rem; }
+.merstar .m-contact-rows .m-contact-label {
+  font-family: var(--m-font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--m-signal-text);
+  width: 6rem;
+  flex-shrink: 0;
+}
+
+@media (max-width: 860px) {
+  .merstar .m-hero-grid,
+  .merstar .m-form-row { grid-template-columns: 1fr; }
+  .merstar .m-network-grid { grid-template-columns: repeat(2, 1fr); }
+  .merstar .m-service-row { grid-template-columns: 1fr; gap: 0.4rem; }
+  .merstar .m-footer-cols { grid-template-columns: 1fr 1fr; }
+  .merstar .m-navlinks { display: none; }
+  .merstar .m-cta-band { flex-direction: column; align-items: flex-start; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .merstar * { animation: none !important; transition: none !important; }
+}
