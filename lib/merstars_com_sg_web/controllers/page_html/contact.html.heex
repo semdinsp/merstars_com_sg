@@ -1,0 +1,75 @@
+<Layouts.marketing current_page={:contact}>
+  <section class="m-hero" style="padding-bottom: 3rem;">
+    <div class="m-container">
+      <div class="m-eyebrow">Contact Us</div>
+      <h1>Let's move your next shipment.</h1>
+      <p class="m-lede">
+        If you would like to get in touch with us today, reach out directly or fill in the form
+        below.
+      </p>
+    </div>
+  </section>
+
+  <section class="m-section" style="padding-top: 0;">
+    <div class="m-container m-hero-grid">
+      <div>
+        <div class="m-contact-rows">
+          <div class="m-contact-row">
+            <span class="m-contact-label">Address</span>
+            <span>
+              7 Airline Road #02-09, Cargo Agents Building E,<br />
+              Changi Airfreight Centre, Singapore 819834
+            </span>
+          </div>
+          <div class="m-contact-row">
+            <span class="m-contact-label">Main</span>
+            <a href="tel:+6565458833" class="m-link">(65) 6545-8833</a>
+          </div>
+          <div class="m-contact-row">
+            <span class="m-contact-label">Sales</span>
+            <a href="tel:+6565458266" class="m-link">(65) 6545-8266</a>
+          </div>
+          <div class="m-contact-row">
+            <span class="m-contact-label">Air &amp; Ocean</span>
+            <a href="tel:+6565432663" class="m-link">(65) 6543-2663</a>
+          </div>
+          <div class="m-contact-row">
+            <span class="m-contact-label">Email</span>
+            <a href="mailto:sales@merstar.com.sg" class="m-link">sales@merstar.com.sg</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="m-card">
+        <h3 style="margin-bottom: 1.4rem;">Send us a message</h3>
+        <form class="m-form" action="/contact-us" method="post">
+          <div class="m-form-row">
+            <div>
+              <label for="contact-name">Name</label>
+              <input type="text" id="contact-name" name="name" placeholder="Your name" />
+            </div>
+            <div>
+              <label for="contact-phone">Phone</label>
+              <input type="tel" id="contact-phone" name="phone" placeholder="Your phone number" />
+            </div>
+          </div>
+          <div class="m-form-row">
+            <div>
+              <label for="contact-email">Email</label>
+              <input type="email" id="contact-email" name="email" placeholder="you@company.com" />
+            </div>
+            <div>
+              <label for="contact-subject">Subject</label>
+              <input type="text" id="contact-subject" name="subject" placeholder="What's this about?" />
+            </div>
+          </div>
+          <div>
+            <label for="contact-message">Message</label>
+            <textarea id="contact-message" name="message" rows="5" placeholder="Tell us about your shipment"></textarea>
+          </div>
+          <button type="submit" class="m-btn m-btn-primary" style="justify-self: start;">Submit</button>
+        </form>
+      </div>
+    </div>
+  </section>
+</Layouts.marketing>
