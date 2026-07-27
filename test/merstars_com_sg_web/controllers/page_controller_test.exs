@@ -30,4 +30,14 @@ defmodule MerstarsComSgWeb.PageControllerTest do
     conn = get(conn, ~p"/contact-us")
     assert html_response(conn, 200) =~ "sales@merstar.com.sg"
   end
+
+  test "GET /team", %{conn: conn} do
+    conn = get(conn, ~p"/team")
+    assert html_response(conn, 200) =~ "Ronnie See"
+  end
+
+  test "GET /request-for-quote", %{conn: conn} do
+    conn = get(conn, ~p"/request-for-quote")
+    assert html_response(conn, 200) =~ "Request Quote"
+  end
 end

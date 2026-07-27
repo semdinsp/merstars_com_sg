@@ -1,0 +1,87 @@
+<Layouts.marketing current_page={nil}>
+  <section class="m-hero" style="padding-bottom: 3rem;">
+    <div class="m-container">
+      <div class="m-eyebrow">Request for Quote</div>
+      <h1>Tell us the shipment. We'll tell you the price.</h1>
+      <p class="m-lede">
+        Share your shipment details below and our team will respond with a competitive,
+        cost-effective quote — usually within one business day.
+      </p>
+    </div>
+  </section>
+
+  <section class="m-section" style="padding-top: 0;">
+    <div class="m-container m-hero-grid">
+      <div>
+        <div class="m-contact-rows">
+          <div class="m-contact-row">
+            <span class="m-contact-label">Main</span>
+            <a href="tel:+6565458833" class="m-link">(65) 6545-8833</a>
+          </div>
+          <div class="m-contact-row">
+            <span class="m-contact-label">Sales</span>
+            <a href="tel:+6565458266" class="m-link">(65) 6545-8266</a>
+          </div>
+          <div class="m-contact-row">
+            <span class="m-contact-label">Email</span>
+            <a href="mailto:sales@merstar.com.sg" class="m-link">sales@merstar.com.sg</a>
+          </div>
+        </div>
+        <p style="margin-top: 2rem; color: var(--m-sage-text); font-size: 0.92rem;">
+          Handling airfreight, ocean freight, overland trucking, customs clearance, warehousing,
+          or one of our specialized services (pharma, perishables, AOG, charter, e-commerce)?
+          Include as much detail as you can — cargo type, weight/volume, origin and destination,
+          and target dates — so we can quote accurately the first time.
+        </p>
+      </div>
+
+      <div class="m-card">
+        <h3 style="margin-bottom: 1.4rem;">Shipment details</h3>
+        <form class="m-form" action="/request-for-quote" method="post">
+          <div class="m-form-row">
+            <div>
+              <label for="rfq-name">Name</label>
+              <input type="text" id="rfq-name" name="name" placeholder="Your name" />
+            </div>
+            <div>
+              <label for="rfq-company">Company</label>
+              <input type="text" id="rfq-company" name="company" placeholder="Your company" />
+            </div>
+          </div>
+          <div class="m-form-row">
+            <div>
+              <label for="rfq-email">Email</label>
+              <input type="email" id="rfq-email" name="email" placeholder="you@company.com" />
+            </div>
+            <div>
+              <label for="rfq-phone">Phone</label>
+              <input type="tel" id="rfq-phone" name="phone" placeholder="Your phone number" />
+            </div>
+          </div>
+          <div class="m-form-row">
+            <div>
+              <label for="rfq-origin">Origin</label>
+              <input type="text" id="rfq-origin" name="origin" placeholder="e.g. Singapore (SIN)" />
+            </div>
+            <div>
+              <label for="rfq-destination">Destination</label>
+              <input type="text" id="rfq-destination" name="destination" placeholder="e.g. Rotterdam (RTM)" />
+            </div>
+          </div>
+          <div>
+            <label for="rfq-details">Shipment Details</label>
+            <textarea
+              id="rfq-details"
+              name="details"
+              rows="5"
+              placeholder="Cargo type, weight/volume, target dates, and any special handling requirements"
+            ></textarea>
+          </div>
+          <button type="submit" class="m-btn m-btn-primary" style="justify-self: start;">
+            Request Quote
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+</Layouts.marketing>

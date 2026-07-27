@@ -36,3 +36,9 @@ npm-debug.log
 /assets/node_modules/
 
 .gstack/
+
+# macOS Finder metadata
+.DS_Store
+
+# Internal source material — not a web asset, don't ship in the repo
+*.pdf
