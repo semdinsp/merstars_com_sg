@@ -162,7 +162,28 @@ defmodule MerstarsComSgWeb.Layouts do
               <a href={path} class={if @current_page == key, do: "current"}>{label}</a>
             <% end %>
           </div>
-          <a href="/request-for-quote" class="m-btn m-btn-primary">Request a Quote</a>
+          <div class="m-nav-actions">
+            <a href="/request-for-quote" class="m-btn m-btn-primary">Request a Quote</a>
+            <button
+              type="button"
+              class="m-nav-burger"
+              aria-label="Toggle menu"
+              aria-expanded="false"
+              aria-controls="m-mobile-menu"
+              phx-click={
+                JS.toggle_attribute({"hidden", "hidden"}, to: "#m-mobile-menu")
+                |> JS.toggle_attribute({"aria-expanded", "true", "false"})
+                |> JS.toggle_class("is-open")
+              }
+            >
+              <span></span><span></span><span></span>
+            </button>
+          </div>
+        </div>
+        <div id="m-mobile-menu" class="m-mobile-menu" hidden>
+          <%= for {path, label, key} <- @nav_items do %>
+            <a href={path} class={if @current_page == key, do: "current"}>{label}</a>
+          <% end %>
         </div>
       </nav>
       <div class="m-nav-gradient-rule"></div>
