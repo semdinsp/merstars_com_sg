@@ -151,7 +151,7 @@ defmodule MerstarsComSgWeb.Layouts do
       <nav class="m-nav">
         <div class="m-nav-inner">
           <a href="/" class="m-brand">
-            <img src={~p"/images/merstar-logo.jpg"} alt="Merstar International" class="m-brand-mark" />
+            <img src={~p"/images/merstar-logo.png"} alt="Merstar International" class="m-brand-mark" />
             <span class="m-brand-word">
               Merstar International
               <small>FREIGHT &amp; LOGISTICS · EST. 1989</small>
