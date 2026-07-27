@@ -206,10 +206,14 @@
 .merstar .m-topbar a { color: inherit; text-decoration: none; }
 .merstar .m-topbar .m-signal-dot { color: var(--m-signal-on-dark); }
 
-/* ---------- main nav (on white, per DESIGN.md) ---------- */
+/* ---------- main nav (Bone, matches page — per DESIGN.md v3) ---------- */
 .merstar .m-nav {
-  background: #ffffff;
-  border-bottom: 1px solid var(--m-line);
+  background: var(--m-bone);
+}
+.merstar .m-nav-gradient-rule {
+  height: 4px;
+  width: 100%;
+  background: linear-gradient(90deg, #2e6fd9 0%, var(--m-signal) 100%);
 }
 .merstar .m-nav-inner {
   max-width: 1180px;
@@ -227,16 +231,10 @@
   text-decoration: none;
 }
 .merstar .m-brand-mark {
-  width: 36px;
   height: 36px;
-  border: 1.5px solid var(--m-signal-text);
-  border-radius: 3px;
-  display: grid;
-  place-items: center;
-  font-family: var(--m-font-display);
-  font-weight: 600;
-  font-size: 1.05rem;
-  color: var(--m-signal-text);
+  width: auto;
+  object-fit: contain;
+  flex-shrink: 0;
   flex-shrink: 0;
 }
 .merstar .m-brand-word {
@@ -466,6 +464,55 @@
   border-radius: 8px;
   padding: 2.4rem;
 }
+/* ---------- team / people grid ---------- */
+.merstar .m-team-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+.merstar .m-person-card {
+  background: #ffffff;
+  border: 1px solid var(--m-line);
+  border-radius: 8px;
+  padding: 1.6rem;
+}
+.merstar .m-person-photo {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--m-bone);
+  border: 1px solid var(--m-line);
+  display: grid;
+  place-items: center;
+  font-family: var(--m-font-display);
+  font-size: 1.3rem;
+  color: var(--m-sage-text);
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+.merstar .m-person-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.merstar .m-person-card h3 { font-size: 1.05rem; margin-bottom: 0.2rem; }
+.merstar .m-person-role {
+  font-family: var(--m-font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--m-signal-text);
+  margin-bottom: 0.8rem;
+}
+.merstar .m-person-card p.m-person-bio {
+  font-size: 0.88rem;
+  color: var(--m-sage-text);
+  margin: 0;
+}
+@media (max-width: 860px) {
+  .merstar .m-team-grid { grid-template-columns: 1fr; }
+}
+
 .merstar .m-testimonial blockquote {
   font-family: var(--m-font-display);
   font-style: italic;

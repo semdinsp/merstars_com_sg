@@ -120,6 +120,7 @@ defmodule MerstarsComSgWeb.Layouts do
     {"/about-us", "About Us", :about},
     {"/our-network", "Our Network", :network},
     {"/services", "Services", :services},
+    {"/team", "Our Team", :team},
     {"/partnership", "Partnership", :partnership},
     {"/contact-us", "Contact Us", :contact}
   ]
@@ -150,7 +151,7 @@ defmodule MerstarsComSgWeb.Layouts do
       <nav class="m-nav">
         <div class="m-nav-inner">
           <a href="/" class="m-brand">
-            <span class="m-brand-mark">M</span>
+            <img src={~p"/images/merstar-logo.jpg"} alt="Merstar International" class="m-brand-mark" />
             <span class="m-brand-word">
               Merstar International
               <small>FREIGHT &amp; LOGISTICS · EST. 1989</small>
@@ -161,9 +162,10 @@ defmodule MerstarsComSgWeb.Layouts do
               <a href={path} class={if @current_page == key, do: "current"}>{label}</a>
             <% end %>
           </div>
-          <a href="/contact-us" class="m-btn m-btn-primary">Request a Quote</a>
+          <a href="/request-for-quote" class="m-btn m-btn-primary">Request a Quote</a>
         </div>
       </nav>
+      <div class="m-nav-gradient-rule"></div>
 
       {render_slot(@inner_block)}
 

@@ -21,6 +21,8 @@ defmodule MerstarsComSgWeb.Router do
     get "/about-us", PageController, :about
     get "/our-network", PageController, :network
     get "/services", PageController, :services
+    get "/team", PageController, :team
+    get "/request-for-quote", PageController, :request_quote
     get "/partnership", PageController, :partnership
     get "/contact-us", PageController, :contact
   end

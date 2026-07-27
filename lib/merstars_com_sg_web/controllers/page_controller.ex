@@ -17,6 +17,14 @@ defmodule MerstarsComSgWeb.PageController do
     render(conn, :services)
   end
 
+  def team(conn, _params) do
+    render(conn, :team)
+  end
+
+  def request_quote(conn, _params) do
+    render(conn, :request_quote)
+  end
+
   def partnership(conn, _params) do
     render(conn, :partnership)
   end
