@@ -269,6 +269,55 @@
   border-bottom-color: var(--m-signal);
 }
 
+/* ---------- mobile nav (hamburger + dropdown) ---------- */
+.merstar .m-nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.merstar .m-nav-burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 1px solid var(--m-line);
+  border-radius: 8px;
+  background: transparent;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.merstar .m-nav-burger span {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: var(--m-ink);
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+.merstar .m-nav-burger.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.merstar .m-nav-burger.is-open span:nth-child(2) { opacity: 0; }
+.merstar .m-nav-burger.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.merstar .m-mobile-menu {
+  display: none;
+  flex-direction: column;
+  border-top: 1px solid var(--m-line);
+  background: var(--m-bone);
+  padding: 0.5rem 2rem 1rem;
+}
+.merstar .m-mobile-menu a {
+  padding: 0.85rem 0;
+  color: var(--m-ink);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-bottom: 1px solid var(--m-line);
+}
+.merstar .m-mobile-menu a:last-child { border-bottom: none; }
+.merstar .m-mobile-menu a.current { color: var(--m-signal-text); }
+
 /* ---------- buttons ---------- */
 .merstar .m-btn {
   display: inline-flex;
@@ -629,14 +678,18 @@
   .merstar .m-service-row { grid-template-columns: 1fr; gap: 0.4rem; }
   .merstar .m-footer-cols { grid-template-columns: 1fr 1fr; }
   .merstar .m-navlinks { display: none; }
+  .merstar .m-nav-burger { display: flex; }
+  .merstar .m-mobile-menu:not([hidden]) { display: flex; }
   .merstar .m-cta-band { flex-direction: column; align-items: flex-start; }
+  .merstar .m-nav-actions .m-btn {
+    padding: 0.55rem 0.85rem;
+    font-size: 0.78rem;
+    flex-shrink: 0;
+  }
 }
 
 @media (max-width: 480px) {
-  .merstar .m-nav-inner {
-    flex-wrap: wrap;
-    row-gap: 0.75rem;
-  }
+  .merstar .m-nav-inner { gap: 0.75rem; }
   .merstar .m-brand { min-width: 0; }
   .merstar .m-brand-word {
     font-size: 0.95rem;
@@ -646,7 +699,6 @@
     white-space: nowrap;
   }
   .merstar .m-brand-word small { display: none; }
-  .merstar .m-nav-inner .m-btn { flex-shrink: 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {
