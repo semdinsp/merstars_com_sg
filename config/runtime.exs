@@ -43,6 +43,23 @@ config :merstars_com_sg, :turnstile,
     |> String.split(",", trim: true)
     |> Enum.map(&String.trim/1)
 
+# Contact and quote form emails. The From address must be on a domain
+# verified in Amazon SES. In prod, emails are only sent when the AWS keys are
+# set (Fly secrets); otherwise submissions are only saved to the database.
+# Outside prod they go to the local mailbox preview at /dev/mailbox.
+config :merstars_com_sg, :inquiries,
+  to: System.get_env("CONTACT_TO_EMAIL", "sales@merstar.com.sg"),
+  from: System.get_env("CONTACT_FROM_EMAIL", "website@merstar.com.sg"),
+  deliver: config_env() != :prod or System.get_env("AWS_ACCESS_KEY_ID") != nil
+
+if config_env() == :prod and System.get_env("AWS_ACCESS_KEY_ID") do
+  config :merstars_com_sg, MerstarsComSg.Mailer,
+    adapter: Swoosh.Adapters.AmazonSES,
+    access_key: System.get_env("AWS_ACCESS_KEY_ID"),
+    secret: System.get_env("AWS_SECRET_ACCESS_KEY"),
+    region: System.get_env("AWS_REGION", "us-east-1")
+end
+
 if config_env() == :prod do
   # The database is optional: the site only uses it to keep a copy of form
   # submissions. Without DATABASE_URL the Repo isn't started, migrations are
