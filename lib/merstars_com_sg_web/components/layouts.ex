@@ -144,7 +144,7 @@ defmodule MerstarsComSgWeb.Layouts do
             &nbsp;·&nbsp;
             <a href="tel:+6565458833">(65) 6545-8833</a>
           </div>
-          <div><span class="m-signal-dot">●</span> Founding Member, L.I.N.K Global Network</div>
+          <div><span class="m-signal-dot">●</span> Member, L.I.N.K Global Network</div>
         </div>
       </div>
 
