@@ -701,6 +701,8 @@
   .merstar .m-footer-cols { grid-template-columns: 1fr 1fr; }
   /* Bigger tap targets for footer links on touch screens. */
   .merstar .m-footer-cols a { padding: 0.6rem 0; margin: 0; }
+  /* Address gets the full row so it doesn't break into one-word lines. */
+  .merstar .m-footer-cols > :first-child { grid-column: 1 / -1; }
   .merstar .m-navlinks { display: none; }
   .merstar .m-nav-burger { display: flex; }
   .merstar .m-mobile-menu:not([hidden]) { display: flex; }
