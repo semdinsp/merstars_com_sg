@@ -699,6 +699,8 @@
   .merstar .m-network-grid { grid-template-columns: repeat(2, 1fr); }
   .merstar .m-service-row { grid-template-columns: 1fr; gap: 0.4rem; }
   .merstar .m-footer-cols { grid-template-columns: 1fr 1fr; }
+  /* Bigger tap targets for footer links on touch screens. */
+  .merstar .m-footer-cols a { padding: 0.6rem 0; margin: 0; }
   .merstar .m-navlinks { display: none; }
   .merstar .m-nav-burger { display: flex; }
   .merstar .m-mobile-menu:not([hidden]) { display: flex; }
