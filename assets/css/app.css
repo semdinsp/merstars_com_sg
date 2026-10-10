@@ -424,7 +424,7 @@
 }
 .merstar .m-manifest-row {
   display: grid;
-  grid-template-columns: 1fr auto auto;
+  grid-template-columns: 1fr auto;
   gap: 1rem;
   padding: 0.55rem 0;
   border-bottom: 1px solid var(--m-line);
@@ -440,16 +440,11 @@
   border-radius: 20px;
   white-space: nowrap;
 }
-.merstar .m-status-pill.m-transit {
-  background: var(--m-signal);
-  color: var(--m-ink);
-}
 .merstar .m-status-pill.m-cleared {
   border: 1px solid var(--m-sage-decor);
   color: var(--m-sage-text);
   background: transparent;
 }
-.merstar .m-manifest-row .m-eta { color: var(--m-sage-text); text-align: right; }
 
 /* ---------- generic section head ---------- */
 .merstar .m-section-head { margin-bottom: 2.5rem; }
@@ -720,17 +715,8 @@
      text still names the brand. */
   .merstar .m-brand-word { display: none; }
   .merstar .m-network-grid.m-cols-3 { grid-template-columns: 1fr; }
-  /* Lane rows: route + status on one line, mode underneath, so routes never wrap. */
-  .merstar .m-manifest-row {
-    grid-template-columns: 1fr auto;
-    row-gap: 0.25rem;
-  }
+  /* Lane rows: keep each route on one line beside its mode tag. */
   .merstar .m-manifest-row .m-route { white-space: nowrap; }
-  .merstar .m-manifest-row .m-eta {
-    grid-column: 1 / -1;
-    text-align: left;
-    font-size: 0.7rem;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {

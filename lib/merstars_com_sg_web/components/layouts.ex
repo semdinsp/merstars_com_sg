@@ -144,7 +144,7 @@ defmodule MerstarsComSgWeb.Layouts do
             &nbsp;·&nbsp;
             <a href="tel:+6565458833">(65) 6545-8833</a>
           </div>
-          <div><span class="m-signal-dot">●</span> Founding Member, L.I.N.K Global Network</div>
+          <div><span class="m-signal-dot">●</span> Member, L.I.N.K Global Network</div>
         </div>
       </div>
 
@@ -223,8 +223,8 @@ defmodule MerstarsComSgWeb.Layouts do
             </div>
           </div>
           <div class="m-footer-bottom">
-            <span>© 2026 Merstar International. All Rights Reserved.</span>
-            <span>IATA · FIATA · SAAA · ISO 9002</span>
+            <span>© 2026 Merstar International (Singapore) Pte Ltd · UEN 198901368N</span>
+            <span>IATA · FIATA · SAAA · ISO Certified</span>
           </div>
         </div>
       </footer>
