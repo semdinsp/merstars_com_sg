@@ -31,6 +31,12 @@ defmodule MerstarsComSgWeb.PageControllerTest do
     assert html_response(conn, 200) =~ "sales@merstar.com.sg"
   end
 
+  test "GET /privacy-policy", %{conn: conn} do
+    html = conn |> get(~p"/privacy-policy") |> html_response(200)
+    assert html =~ "Personal Data Protection"
+    assert html =~ "Data Protection Officer"
+  end
+
   test "GET /team", %{conn: conn} do
     conn = get(conn, ~p"/team")
     assert html_response(conn, 200) =~ "Ronnie See"

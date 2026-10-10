@@ -660,6 +660,18 @@
   gap: 0.5rem;
 }
 
+/* ---------- legal / policy pages ---------- */
+.merstar .m-legal { max-width: 72ch; }
+.merstar .m-legal h2 { font-size: 1.35rem; margin: 2.4rem 0 0.8rem; }
+.merstar .m-legal p,
+.merstar .m-legal li { color: var(--m-sage-text); }
+.merstar .m-legal ul { list-style: disc; padding-left: 1.2rem; margin: 0 0 1rem; }
+.merstar .m-legal li { margin-bottom: 0.4rem; }
+.merstar .m-legal-updated { font-family: var(--m-font-mono); font-size: 0.75rem; }
+.merstar .m-legal-contact { padding: 1.6rem; margin: 0 0 1.2rem; }
+.merstar .m-legal-contact p { margin: 0 0 0.4rem; color: var(--m-ink); }
+.merstar .m-legal-contact p:last-child { margin-bottom: 0; }
+
 /* ---------- simple form (contact page) ---------- */
 .merstar .m-form { display: grid; gap: 1.1rem; }
 .merstar .m-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; }
