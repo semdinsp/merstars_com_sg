@@ -374,6 +374,8 @@
   gap: 3rem;
   align-items: center;
 }
+/* Top-align columns when one side is much taller (contact details beside a form). */
+.merstar .m-hero-grid.m-align-top { align-items: start; }
 .merstar .m-hero p.m-lede {
   font-size: 1.05rem;
   color: var(--m-sage-text);
