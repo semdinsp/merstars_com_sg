@@ -690,15 +690,9 @@
 
 @media (max-width: 480px) {
   .merstar .m-nav-inner { gap: 0.75rem; }
-  .merstar .m-brand { min-width: 0; }
-  .merstar .m-brand-word {
-    font-size: 0.95rem;
-    min-width: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-  .merstar .m-brand-word small { display: none; }
+  /* No room for the wordmark beside the quote button and menu; the logo's alt
+     text still names the brand. */
+  .merstar .m-brand-word { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
