@@ -467,6 +467,7 @@
   border-top: 1px solid var(--m-line);
   border-left: 1px solid var(--m-line);
 }
+.merstar .m-network-grid.m-cols-3 { grid-template-columns: repeat(3, 1fr); }
 .merstar .m-network-cell {
   border-right: 1px solid var(--m-line);
   border-bottom: 1px solid var(--m-line);
@@ -695,6 +696,7 @@
   /* No room for the wordmark beside the quote button and menu; the logo's alt
      text still names the brand. */
   .merstar .m-brand-word { display: none; }
+  .merstar .m-network-grid.m-cols-3 { grid-template-columns: 1fr; }
   /* Lane rows: route + status on one line, mode underneath, so routes never wrap. */
   .merstar .m-manifest-row {
     grid-template-columns: 1fr auto;
