@@ -693,6 +693,17 @@
   /* No room for the wordmark beside the quote button and menu; the logo's alt
      text still names the brand. */
   .merstar .m-brand-word { display: none; }
+  /* Lane rows: route + status on one line, mode underneath, so routes never wrap. */
+  .merstar .m-manifest-row {
+    grid-template-columns: 1fr auto;
+    row-gap: 0.25rem;
+  }
+  .merstar .m-manifest-row .m-route { white-space: nowrap; }
+  .merstar .m-manifest-row .m-eta {
+    grid-column: 1 / -1;
+    text-align: left;
+    font-size: 0.7rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
