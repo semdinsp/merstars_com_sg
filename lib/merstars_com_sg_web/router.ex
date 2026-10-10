@@ -25,6 +25,7 @@ defmodule MerstarsComSgWeb.Router do
     get "/request-for-quote", PageController, :request_quote
     get "/partnership", PageController, :partnership
     get "/contact-us", PageController, :contact
+    get "/privacy-policy", PageController, :privacy
   end
 
   # Other scopes may use custom stacks.

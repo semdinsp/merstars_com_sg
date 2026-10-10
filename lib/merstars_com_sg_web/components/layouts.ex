@@ -213,6 +213,7 @@ defmodule MerstarsComSgWeb.Layouts do
               <a href="/our-network">Our Network</a>
               <a href="/partnership">Partnership</a>
               <a href="/contact-us">Contact</a>
+              <a href="/privacy-policy">Privacy Policy</a>
             </div>
             <div>
               <h4>Contact</h4>
