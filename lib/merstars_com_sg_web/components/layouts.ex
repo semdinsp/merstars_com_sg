@@ -224,7 +224,7 @@ defmodule MerstarsComSgWeb.Layouts do
           </div>
           <div class="m-footer-bottom">
             <span>© 2026 Merstar International. All Rights Reserved.</span>
-            <span>IATA · FIATA · SAAA · ISO 9002</span>
+            <span>IATA · FIATA · SAAA · ISO Certified</span>
           </div>
         </div>
       </footer>
