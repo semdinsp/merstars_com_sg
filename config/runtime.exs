@@ -23,23 +23,43 @@ end
 config :merstars_com_sg, MerstarsComSgWeb.Endpoint,
   http: [port: String.to_integer(System.get_env("PORT", "4000"))]
 
+# Cloudflare Turnstile (bot check on the contact and quote forms).
+# In prod, TURNSTILE_SITE_KEY and TURNSTILE_SECRET_KEY must be set (Fly
+# secrets) or the forms reject every submission; tokens must come from one
+# of TURNSTILE_HOSTNAMES. Elsewhere, default to Cloudflare's test keys, which
+# always pass: https://developers.cloudflare.com/turnstile/troubleshooting/testing/
+# Locally, `source .env` to use the real keys instead.
+{turnstile_site_key, turnstile_secret_key, turnstile_hostnames} =
+  if config_env() == :prod,
+    do: {nil, nil, "merstar.com.sg,www.merstar.com.sg,merstars-com-sg.fly.dev"},
+    else: {"1x00000000000000000000AA", "1x0000000000000000000000000000000AA", ""}
+
+config :merstars_com_sg, :turnstile,
+  site_key: System.get_env("TURNSTILE_SITE_KEY", turnstile_site_key),
+  secret_key: System.get_env("TURNSTILE_SECRET_KEY", turnstile_secret_key),
+  hostnames:
+    "TURNSTILE_HOSTNAMES"
+    |> System.get_env(turnstile_hostnames)
+    |> String.split(",", trim: true)
+    |> Enum.map(&String.trim/1)
+
 if config_env() == :prod do
-  database_url =
-    System.get_env("DATABASE_URL") ||
-      raise """
-      environment variable DATABASE_URL is missing.
-      For example: ecto://USER:PASS@HOST/DATABASE
-      """
+  # The database is optional: the site only uses it to keep a copy of form
+  # submissions. Without DATABASE_URL the Repo isn't started, migrations are
+  # skipped, and submissions are only emailed.
+  if database_url = System.get_env("DATABASE_URL") do
+    maybe_ipv6 = if System.get_env("ECTO_IPV6") in ~w(true 1), do: [:inet6], else: []
 
-  maybe_ipv6 = if System.get_env("ECTO_IPV6") in ~w(true 1), do: [:inet6], else: []
-
-  config :merstars_com_sg, MerstarsComSg.Repo,
-    # ssl: true,
-    url: database_url,
-    pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10"),
-    # For machines with several cores, consider starting multiple pools of `pool_size`
-    # pool_count: 4,
-    socket_options: maybe_ipv6
+    config :merstars_com_sg, MerstarsComSg.Repo,
+      # ssl: true,
+      url: database_url,
+      pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10"),
+      # For machines with several cores, consider starting multiple pools of `pool_size`
+      # pool_count: 4,
+      socket_options: maybe_ipv6
+  else
+    config :merstars_com_sg, database: false, ecto_repos: []
+  end
 
   # The secret key base is used to sign/encrypt cookies and other secrets.
   # A default value is used in config/dev.exs and config/test.exs but you

@@ -7,16 +7,19 @@ defmodule MerstarsComSg.Application do
 
   @impl true
   def start(_type, _args) do
-    children = [
-      MerstarsComSgWeb.Telemetry,
-      MerstarsComSg.Repo,
-      {DNSCluster, query: Application.get_env(:merstars_com_sg, :dns_cluster_query) || :ignore},
-      {Phoenix.PubSub, name: MerstarsComSg.PubSub},
-      # Start a worker by calling: MerstarsComSg.Worker.start_link(arg)
-      # {MerstarsComSg.Worker, arg},
-      # Start to serve requests, typically the last entry
-      MerstarsComSgWeb.Endpoint
-    ]
+    children =
+      [
+        MerstarsComSgWeb.Telemetry,
+        # The database is optional in prod (see config/runtime.exs).
+        MerstarsComSg.database?() && MerstarsComSg.Repo,
+        {DNSCluster, query: Application.get_env(:merstars_com_sg, :dns_cluster_query) || :ignore},
+        {Phoenix.PubSub, name: MerstarsComSg.PubSub},
+        # Start a worker by calling: MerstarsComSg.Worker.start_link(arg)
+        # {MerstarsComSg.Worker, arg},
+        # Start to serve requests, typically the last entry
+        MerstarsComSgWeb.Endpoint
+      ]
+      |> Enum.filter(& &1)
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
