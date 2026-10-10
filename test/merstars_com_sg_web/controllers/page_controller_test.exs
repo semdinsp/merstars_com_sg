@@ -37,6 +37,14 @@ defmodule MerstarsComSgWeb.PageControllerTest do
     assert html =~ "Data Protection Officer"
   end
 
+  test "contact and quote forms show the PDPA consent notice", %{conn: conn} do
+    for path <- [~p"/contact-us", ~p"/request-for-quote"] do
+      html = conn |> get(path) |> html_response(200)
+      assert html =~ "you consent to Merstar International (Singapore) Pte Ltd"
+      assert html =~ ~s(href="/privacy-policy")
+    end
+  end
+
   test "GET /team", %{conn: conn} do
     conn = get(conn, ~p"/team")
     assert html_response(conn, 200) =~ "Ronnie See"

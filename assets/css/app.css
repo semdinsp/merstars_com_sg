@@ -693,6 +693,11 @@
   background: #ffffff;
   color: var(--m-ink);
 }
+.merstar .m-form-consent {
+  font-size: 0.8rem;
+  color: var(--m-sage-text);
+  margin: 0;
+}
 .merstar .m-contact-rows { display: flex; flex-direction: column; gap: 1.2rem; }
 .merstar .m-contact-rows .m-contact-row { display: flex; align-items: baseline; gap: 0.8rem; }
 .merstar .m-contact-rows .m-contact-label {
