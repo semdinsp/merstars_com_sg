@@ -42,3 +42,6 @@ npm-debug.log
 
 # Internal source material — not a web asset, don't ship in the repo
 *.pdf
+
+# Local secrets (Turnstile keys etc.) — load with `source .env`
+.env

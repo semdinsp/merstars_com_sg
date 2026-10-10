@@ -688,6 +688,36 @@
   background: #ffffff;
   color: var(--m-ink);
 }
+.merstar .m-form [aria-invalid="true"] { border-color: #b42318; }
+.merstar .m-field-error {
+  color: #b42318;
+  font-size: 0.78rem;
+  margin: 0.35rem 0 0;
+}
+/* Honeypot: off-screen rather than display:none, which some bots skip. */
+.merstar .m-honeypot {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+.merstar .m-notice {
+  border-radius: 6px;
+  padding: 0.8rem 1rem;
+  font-size: 0.9rem;
+  margin: 0 0 1.2rem;
+}
+.merstar .m-notice-ok {
+  background: #e8f5ec;
+  border: 1px solid var(--m-signal);
+  color: var(--m-ink);
+}
+.merstar .m-notice-error {
+  background: #fdecea;
+  border: 1px solid #b42318;
+  color: #7a1a12;
+}
 .merstar .m-form-consent {
   font-size: 0.8rem;
   color: var(--m-sage-text);

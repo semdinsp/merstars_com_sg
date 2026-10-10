@@ -22,7 +22,7 @@ defmodule MerstarsComSgWeb.PageController do
   end
 
   def request_quote(conn, _params) do
-    render(conn, :request_quote)
+    render(conn, :request_quote, form: inquiry_form("quote"))
   end
 
   def partnership(conn, _params) do
@@ -30,10 +30,14 @@ defmodule MerstarsComSgWeb.PageController do
   end
 
   def contact(conn, _params) do
-    render(conn, :contact)
+    render(conn, :contact, form: inquiry_form("contact"))
   end
 
   def privacy(conn, _params) do
     render(conn, :privacy)
+  end
+
+  defp inquiry_form(kind) do
+    kind |> MerstarsComSg.Inquiries.change_inquiry() |> Phoenix.Component.to_form(as: :inquiry)
   end
 end
