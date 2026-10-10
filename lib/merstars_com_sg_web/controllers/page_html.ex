@@ -6,5 +6,7 @@ defmodule MerstarsComSgWeb.PageHTML do
   """
   use MerstarsComSgWeb, :html
 
+  import MerstarsComSgWeb.InquiryComponents
+
   embed_templates "page_html/*"
 end

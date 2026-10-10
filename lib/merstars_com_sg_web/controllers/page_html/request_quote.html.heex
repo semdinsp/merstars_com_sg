@@ -35,48 +35,52 @@
         </p>
       </div>
 
-      <div class="m-card">
+      <div class="m-card" id="form">
         <h3 style="margin-bottom: 1.4rem;">Shipment details</h3>
-        <form class="m-form" action="/request-for-quote" method="post">
+        <.inquiry_notice flash={@flash} />
+        <.form for={@form} action={~p"/request-for-quote"} class="m-form" novalidate>
           <div class="m-form-row">
-            <div>
-              <label for="rfq-name">Name</label>
-              <input type="text" id="rfq-name" name="name" placeholder="Your name" />
-            </div>
-            <div>
-              <label for="rfq-company">Company</label>
-              <input type="text" id="rfq-company" name="company" placeholder="Your company" />
-            </div>
-          </div>
-          <div class="m-form-row">
-            <div>
-              <label for="rfq-email">Email</label>
-              <input type="email" id="rfq-email" name="email" placeholder="you@company.com" />
-            </div>
-            <div>
-              <label for="rfq-phone">Phone</label>
-              <input type="tel" id="rfq-phone" name="phone" placeholder="Your phone number" />
-            </div>
+            <.inquiry_field field={@form[:name]} label="Name" placeholder="Your name" autocomplete="name" />
+            <.inquiry_field
+              field={@form[:company]}
+              label="Company"
+              placeholder="Your company"
+              autocomplete="organization"
+            />
           </div>
           <div class="m-form-row">
-            <div>
-              <label for="rfq-origin">Origin</label>
-              <input type="text" id="rfq-origin" name="origin" placeholder="e.g. Singapore (SIN)" />
-            </div>
-            <div>
-              <label for="rfq-destination">Destination</label>
-              <input type="text" id="rfq-destination" name="destination" placeholder="e.g. Rotterdam (RTM)" />
-            </div>
+            <.inquiry_field
+              field={@form[:email]}
+              label="Email"
+              type="email"
+              placeholder="you@company.com"
+              autocomplete="email"
+            />
+            <.inquiry_field
+              field={@form[:phone]}
+              label="Phone"
+              type="tel"
+              placeholder="Your phone number"
+              autocomplete="tel"
+            />
           </div>
-          <div>
-            <label for="rfq-details">Shipment Details</label>
-            <textarea
-              id="rfq-details"
-              name="details"
-              rows="5"
-              placeholder="Cargo type, weight/volume, target dates, and any special handling requirements"
-            ></textarea>
+          <div class="m-form-row">
+            <.inquiry_field field={@form[:origin]} label="Origin" placeholder="e.g. Singapore (SIN)" />
+            <.inquiry_field
+              field={@form[:destination]}
+              label="Destination"
+              placeholder="e.g. Rotterdam (RTM)"
+            />
           </div>
+          <.inquiry_field
+            field={@form[:message]}
+            label="Shipment Details"
+            type="textarea"
+            rows="5"
+            placeholder="Cargo type, weight/volume, target dates, and any special handling requirements"
+          />
+          <.honeypot />
+          <.turnstile action="quote" error={assigns[:captcha_error]} />
           <p class="m-form-consent">
             By submitting this form, you consent to Merstar International (Singapore) Pte Ltd
             collecting, using and disclosing your personal data to respond to your quote request, as
@@ -85,7 +89,7 @@
           <button type="submit" class="m-btn m-btn-primary" style="justify-self: start;">
             Request Quote
           </button>
-        </form>
+        </.form>
       </div>
     </div>
   </section>

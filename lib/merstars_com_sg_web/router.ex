@@ -23,8 +23,10 @@ defmodule MerstarsComSgWeb.Router do
     get "/services", PageController, :services
     get "/team", PageController, :team
     get "/request-for-quote", PageController, :request_quote
+    post "/request-for-quote", InquiryController, :quote
     get "/partnership", PageController, :partnership
     get "/contact-us", PageController, :contact
+    post "/contact-us", InquiryController, :contact
     get "/privacy-policy", PageController, :privacy
   end
 
