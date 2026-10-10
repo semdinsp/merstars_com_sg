@@ -223,7 +223,7 @@ defmodule MerstarsComSgWeb.Layouts do
             </div>
           </div>
           <div class="m-footer-bottom">
-            <span>© 2026 Merstar International. All Rights Reserved.</span>
+            <span>© 2026 Merstar International (Singapore) Pte Ltd · UEN 198901368N</span>
             <span>IATA · FIATA · SAAA · ISO Certified</span>
           </div>
         </div>
